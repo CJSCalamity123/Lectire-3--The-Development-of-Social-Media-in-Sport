@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Development of Social Media in Sport | Christopher Sanon</title>
+  <style>
+    :root {
+      --bg: #190b0b;
+      --card-bg: rgba(49, 35, 22, 0.75);
+      --accent-cyan: #aed406;
+      --accent-emerald: #10b981;
+      --accent-purple: #8b5cf6;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Interactive Timeline Section */
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timeline-nav {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: #0b0f19;
+    }
+
+    .display-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      backdrop-filter: blur(10px);
+      min-height: 180px;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .display-card h3 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .display-card ul {
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .display-card li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Visual Media & Images Styling */
+    .timeline-media {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-media img {
+      max-height: 220px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: contain;
+      background: #000;
+    }
+
+    .logo-img {
+      max-height: 90px !important;
+      background: transparent !important;
+      border: none !important;
+    }
+
+    /* Side-by-side media placement */
+    .timeline-media.split-media {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .timeline-media.split-media img {
+      width: 48%;
+      max-height: 350px;
+      object-fit: contain;
+    }
+
+    /* Vertical Shorts Container */
+    .short-container {
+      position: relative;
+      width: 48%;
+      max-width: 320px;
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .short-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Grid Section: Ecosystem */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card.athletes h4 { color: var(--accent-emerald); }
+    .card.orgs h4 { color: var(--accent-cyan); }
+    .card.fans h4 { color: var(--accent-purple); }
+
+    .card ul {
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .card li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* Tension Split Section */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 650px) {
+      .split {
+        grid-template-columns: 1fr;
+      }
+      .timeline-media,
+      .timeline-media.split-media {
+        flex-direction: column;
+        align-items: center;
+      }
+      .timeline-media img,
+      .timeline-media.split-media img,
+      .short-container {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .split-box {
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .split-box.risks {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .split-box.future {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.25);
+    }
+
+    .split-box h4 {
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .split-box.risks h4 { color: #f87171; }
+    .split-box.future h4 { color: #60a5fa; }
+
+    .split-box ul {
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>The Development of Social Media in Sport</h1>
+      <p class="meta">Christopher Sanon | SPH 731 | November 2, 2026</p>
+    </header>
+
+    <!-- Interactive Chronology -->
+    <section>
+      <h2 class="section-title">⏱️ Platform Chronology & Evolution</h2>
+      <div class="timeline-nav" id="timelineNav"></div>
+      <div class="display-card" id="timelineDisplay"></div>
+    </section>
+
+    <!-- Structural Ecosystem -->
+    <section>
+      <h2 class="section-title">🏛️ The Three Pillars of Modern Sport Media</h2>
+      <div class="grid">
+        <div class="card athletes">
+          <h4>Athletes & NIL</h4>
+          <ul>
+            <li>Direct fan engagement builds standalone personal brands.</li>
+            <li>NIL opportunities in collegiate athletics tied directly to follower reach.</li>
+            <li>Sponsorship integration shifted from leagues to individual talent.</li>
+            <li>Critical need for personal brand and reputation management.</li>
+          </ul>
+        </div>
+        <div class="card orgs">
+          <h4>Organizations & Teams</h4>
+          <ul>
+            <li>Teams and leagues market directly to global fan bases.</li>
+            <li>Serves as a real-time crisis communication tool.</li>
+            <li>Community building and dynamic engagement campaigns.</li>
+            <li>Decisions powered by audience engagement analytics.</li>
+          </ul>
+        </div>
+        <div class="card fans">
+          <h4>Fans & Participatory Culture</h4>
+          <ul>
+            <li>Fans actively produce, share, and co-create sport narratives.</li>
+            <li>Proliferation of memes, reaction videos, and fan blogs.</li>
+            <li>Transition from passive spectators to empowered online communities.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tensions & Future Frontiers -->
+    <section>
+      <h2 class="section-title">⚖️ Tensions & Emerging Frontiers</h2>
+      <div class="split">
+        <div class="split-box risks">
+          <h4>Challenges & Risks</h4>
+          <ul>
+            <li>Targeted online harassment and digital player abuse.</li>
+            <li>Spread of rumors, unverified leaks, and misinformation.</li>
+            <li>Privacy invasion and athlete mental health concerns.</li>
+            <li>Fan fatigue from hyper-commercialization and ad fatigue.</li>
+          </ul>
+        </div>
+        <div class="split-box future">
+          <h4>Emerging Frontiers</h4>
+          <ul>
+            <li>AI-driven algorithmic feed personalization.</li>
+            <li>Augmented & Virtual Reality (AR/VR) immersive stadium experiences.</li>
+            <li>Athlete-founded and athlete-operated media companies.</li>
+            <li>Cohesive, global reach via multi-platform distribution.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Synthesized for SPH 731 Course Module Summary.
+    </footer>
+  </div>
+
+  <script>
+    const timelineData = [
+      {
+        id: "2000s",
+        label: "2000s: Early Web",
+        title: "Early Social Media & Sport (MySpace, Early Facebook)",
+        bullets: [
+          "Formation of the earliest digital fan message boards and online communities.",
+          "Extremely limited official presence from athletes or sports organizations.",
+          "Marked the transition toward broader digital adoption across sports culture."
+        ],
+        mediaHtml: `
+          <div class="timeline-media split-media">
+            <img src="myspace-sports.jpg" alt="MySpace Action Sports Homepage" />
+            <img src="facebook-classic.webp" alt="Classic 2006 Facebook Feed" />
+          </div>
+        `
+      },
+      {
+        id: "2006",
+        label: "2006: Twitter Era",
+        title: "The Twitter (X) Revolution",
+        bullets: [
+          "Launch of real-time sports updates and immediate score reports.",
+          "Athletes bypass traditional beat reporters to communicate directly with fans.",
+          "Live-game commentary and hashtags turn local games into global conversations."
+        ],
+        mediaHtml: `
+          <div class="timeline-media split-media">
+            <img src="twitter-logo.jpg" alt="Classic 2006 Twitter Logo" class="logo-img" />
+            <img src="lin-espn.jpeg" alt="ESPN 2012 Jeremy Lin Coverage and Viral Backlash" />
+          </div>
+        `
+      },
+      {
+        id: "2010",
+        label: "2010: Instagram",
+        title: "Instagram & Visual Branding",
+        bullets: [
+          "Introduced curated visual storytelling, photography, and personal lifestyle feeds.",
+          "Rise of athlete influencer culture and commercial visual aesthetics.",
+          "Direct integration of brand sponsorships within athletes' native posts."
+        ],
+        mediaHtml: `
+          <div class="timeline-media split-media">
+            <img src="lebron-ig.jpg" alt="LeBron James Early Instagram Post" />
+            <img src="curry-ig.jpg" alt="Stephen Curry Early Instagram Post" />
+          </div>
+        `
+      },
+      {
+        id: "youtube",
+        label: "YouTube",
+        title: "YouTube & Long-Form Video",
+        bullets: [
+          "Player-hosted training vlogs and day-in-the-life lifestyle content.",
+          "Franchises develop cinematic, behind-the-scenes docuseries.",
+          "Global reach for highlights and ad monetization opportunities."
+        ],
+        mediaHtml: `
+          <div class="timeline-media split-media">
+            <img src="Egor.webp" alt="Athlete Behind-The-Scenes Training Vlog" />
+            <img src="DLO.jpg" alt="D'Angelo Russell Off-Season Training Series" />
+          </div>
+        `
+      },
+      {
+        id: "tiktok",
+        label: "2019+: TikTok & Shorts",
+        title: "TikTok & Short-Form Creativity",
+        bullets: [
+          "Algorithmic viral challenges and organic trend adoption.",
+          "Showcases raw, relatable athlete personalities outside of competition.",
+          "Serves as the primary driver for attracting younger demographics and Gen Z fans."
+        ],
+        mediaHtml: `
+          <div class="timeline-media split-media">
+            <div class="short-container">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/4DvqmrkV0OI?rel=0" 
+                title="Michael Porter Jr Cup Trick Short" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="short-container">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/G1wo2M17x1Y?rel=0" 
+                title="Michael Porter Jr Brooklyn Nets Challenge Short" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    const navContainer = document.getElementById("timelineNav");
+    const displayContainer = document.getElementById("timelineDisplay");
+
+    function renderDisplay(item) {
+      displayContainer.innerHTML = `
+        <h3>${item.title}</h3>
+        <ul>
+          ${item.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+        ${item.mediaHtml || ''}
+      `;
+    }
+
+    timelineData.forEach((item, index) => {
+      const btn = document.createElement("button");
+      btn.className = `tab-btn ${index === 0 ? "active" : ""}`;
+      btn.textContent = item.label;
+      btn.onclick = () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderDisplay(item);
+      };
+      navContainer.appendChild(btn);
+    });
+
+    // Initialize with first item
+    renderDisplay(timelineData[0]);
+  </script>
+</body>
+</html>
